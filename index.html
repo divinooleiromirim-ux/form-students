@@ -39,15 +39,18 @@
 document.getElementById('alunoForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const formData = Object.fromEntries(new FormData(this));
+
   fetch('https://script.google.com/macros/s/AKfycbwaHi-f9nyFmhTYpUnbVpfe8afZQpJTaIILyD4uUFTc6Uym-FZpE-mgnSug_iteU9cteA/exec', {
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(formData)
-  }).then(res => res.json())
-    .then(data => {
+  })
+  .then(res => res.json())
+  .then(data => {
       alert('Enviado com sucesso!');
       document.getElementById('alunoForm').reset();
-    })
-    .catch(err => alert('Erro ao enviar: ' + err));
+  })
+  .catch(err => alert('Erro ao enviar: ' + err));
 });
 </script>
 </body>
